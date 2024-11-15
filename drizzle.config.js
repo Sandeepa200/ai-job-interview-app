@@ -7,7 +7,7 @@ export default defineConfig({
   dialect: "postgresql",
   schema: "./utils/schema.js",
   dbCredentials: {
-    url: "postgresql://ai-interview-db_owner:5WojztMXVp6L@ep-cool-forest-a14eoco8.ap-southeast-1.aws.neon.tech/ai-interview-db?sslmode=require",
+    url: process.env.NEXT_PUBLIC_DRIZZLE_DB_URL,
   },
 
   extensionsFilters: ["postgis"],
