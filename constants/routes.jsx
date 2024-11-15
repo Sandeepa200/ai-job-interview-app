@@ -8,3 +8,8 @@ export const DOCS_ROUTE = "/docs";
 export const PROFILE_ROUTE = "/profile";
 export const SETTINGS_ROUTE = "/settings";
 export const NOT_FOUND_ROUTE = "/404"; // For a 404 page if needed
+
+// Function to generate dynamic routes
+export const getInterviewRoute = (mockId) => `/interview/${mockId}`;
+export const getInterviewStartRoute = (interviewId) => `/interview/${interviewId}/start`;
+

@@ -29,6 +29,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useUser } from "@clerk/nextjs";
 import moment from "moment/moment";
 import { useRouter } from "next/navigation";
+import { getInterviewRoute, INTERVIEW_ROUTE } from "@/constants/routes";
 
 const NewInterviewForm = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -80,7 +81,7 @@ const NewInterviewForm = () => {
         console.log("Inserted ID: ", resp);
         if(resp){
           setOpenDialog(false);
-          router.push(`/interview/${resp[0]?.mockId}`);
+          router.push(getInterviewRoute(resp[0]?.mockId));
         }
       } else {
         console.log("Error in AI Data");

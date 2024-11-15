@@ -4,10 +4,13 @@ import { Button } from "@/components/ui/button";
 import { db } from "@/utils/db";
 import { MockInterview } from "@/utils/schema";
 import { eq } from "drizzle-orm";
-import { WebcamIcon } from "lucide-react";
+import { Lightbulb, WebcamIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import Webcam from "react-webcam";
 import { toast } from "sonner";
+import { VIDEO_DESCRIPTION } from "@/constants/strings";
+import Link from "next/link";
+import { getInterviewStartRoute, INTERVIEW_START_ROUTE } from "@/constants/routes";
 
 const Interview = ({ params }) => {
   const [interviewId, setInterviewId] = useState(null);
@@ -25,6 +28,7 @@ const Interview = ({ params }) => {
     fetchParams();
   }, [params]); // Dependency on params to trigger the effect when they change
 
+  //get interview data
   const GetInterviewDetails = async (interviewId) => {
     try {
       if (interviewId) {
@@ -49,10 +53,10 @@ const Interview = ({ params }) => {
     <CommonLayout>
       <div className="my-10 flex flex-col items-center justify-center">
         <h2 className="font-bold text-2xl">Let's start the interview</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
+        <div className="grid grid-cols-1 mt-10 md:grid-cols-2 gap-10">
           {/* information section  */}
-          <div className="flex flex-col my-5 justify-start items-start gap-5">
-            <div className="flex flex-col p-5 rounded-lg border gap-5">
+          <div className="flex flex-col my-5  justify-start items-start gap-5">
+            <div className="flex flex-col p-5 rounded-lg w-full border gap-5">
               <h2 className="text-lg">
                 <strong>Job Role/ Job Position:</strong>{" "}
                 {interviewData?.jobPosition}
@@ -66,27 +70,46 @@ const Interview = ({ params }) => {
                 {interviewData?.jobExperience}
               </h2>
             </div>
+            <div className="p-5 border rounded-lg border-yellow-300 bg-yellow-100">
+              <h2 className="flex gap-2 items-center text-yellow-600">
+                <Lightbulb />
+                <strong>Information</strong>
+              </h2>
+              <p
+                className="mt-3 text-yellow-600"
+                dangerouslySetInnerHTML={{ __html: VIDEO_DESCRIPTION }}
+              />
+            </div>
           </div>
 
           {/* camera section */}
-          <div>
+          <div className="flex flex-col justify-center items-center">
             {interviewData && webcamEnabled ? (
               <Webcam
                 onUserMedia={() => setWebcamEnabled(true)}
                 onUserMediaError={() => setWebcamEnabled(false)}
                 mirrored={true}
-                style={{ width: 300, height: 300 }}
+                style={{}}
               />
             ) : (
               <div className="flex flex-col items-center justify-center">
                 <WebcamIcon className="h-72 my-7 w-full p-20 bg-secondary rounded-lg border" />
-                <Button onClick={() => setWebcamEnabled(true)}>
+                <Button
+                  className="w-full"
+                  variant="outline"
+                  onClick={() => setWebcamEnabled(true)}
+                >
                   Enable Web Cam and Microphone
                 </Button>
               </div>
             )}
           </div>
         </div>
+      </div>
+      <div className="flex justify-end items-end">
+        <Link href={getInterviewStartRoute(interviewId)}>
+          <Button>Start Interview</Button>
+        </Link>
       </div>
     </CommonLayout>
   );
