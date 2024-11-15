@@ -1,10 +1,10 @@
 import React from "react";
-import DashboardLayout from "../layouts/dashboard-layout";
+import CommonLayout from "../layouts/common-layout";
 import NewInterviewForm from "@/components/NewInterviewForm";
 
 const Dashboard = () => {
   return (
-    <DashboardLayout>
+    <CommonLayout>
       <div className="p-10">
         <h2 className="font-bold text-2xl">Dashboard</h2>
         <h2 className="text-gray-500">Create and Start Your AI Mockup Interview</h2>
@@ -12,7 +12,7 @@ const Dashboard = () => {
           <NewInterviewForm />
         </div>
       </div>
-    </DashboardLayout>
+    </CommonLayout>
   );
 };
 

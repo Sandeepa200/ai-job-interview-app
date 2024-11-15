@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import React from "react";
 
-function DashboardLayout({ children }) {
+function CommonLayout({ children }) {
   return (
     <div>
       <Header />
@@ -10,4 +10,4 @@ function DashboardLayout({ children }) {
   );
 }
 
-export default DashboardLayout;
+export default CommonLayout;
