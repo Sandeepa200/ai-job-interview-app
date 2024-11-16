@@ -11,3 +11,8 @@ export const VIDEO_DESCRIPTION = `Enable Video Web Cam and Microphone to Start y
 Interview, It Has ${QUES_COUNT} question which you can answer and at the last you will
 get the report on the basis of your answer. <br/><br/>NOTE: We never record your
 video, Web cam access you can disable at any time if you want`;
+
+export const QUESTION_DESCRIPTION = `Click on Record Answer when you want to answer the question. At
+the end of interview we will give you the feedback along with
+correct answer for each of question and your answer to comapre
+it.`;

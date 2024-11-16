@@ -1,6 +1,7 @@
 "use client";
 import CommonLayout from '@/app/layouts/common-layout'
 import QuestionSection from '@/components/QuestionSection';
+import RecordAnswerSection from '@/components/RecordAnswerSection';
 import { db } from '@/utils/db';
 import { MockInterview } from '@/utils/schema';
 import { eq } from 'drizzle-orm';
@@ -51,10 +52,11 @@ const StartInterview = ({ params }) => {
   return (
     <CommonLayout>
       <div>
-        <div className='grid grid-cols-1 md:grid-cols-2'>
+        <div className='grid grid-cols-1 md:grid-cols-2 mt-10 gap-10'>
             {/* Questions  */}
             <QuestionSection interviewQuestions={interviewQuestions} activeQuestionIndex={activeQuestionIndex}/>
             {/* Video/Audio Recording  */}
+            <RecordAnswerSection/>
         </div>
       </div>
     </CommonLayout>
